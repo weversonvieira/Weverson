@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Cliente extends Pessoa {
 
+	@OneToMany(mappedBy = "cliente")
 	private List<Chamado> chamados = new ArrayList<>();
 
-	public Cliente() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Cliente(Integer id, String nome, String cpf, String email, String senha, LocalDate dataCriacao) {
-		super(id, nome, cpf, email, senha, dataCriacao);
+	public Cliente(Integer id2, String nome2, String cpf2, String email2, String senha2) {
+		super(id2, nome2, cpf2, email2, senha2);
 		// TODO Auto-generated constructor stub
 	}
 
