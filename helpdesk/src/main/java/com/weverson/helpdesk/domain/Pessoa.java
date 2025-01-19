@@ -42,24 +42,8 @@ public abstract class Pessoa implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 	
-	public Pessoa(Integer id, String nome, String cpf, String email, String senha,
-			LocalDate dataCriacao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.email = email;
-		this.senha = senha;
-		this.dataCriacao = dataCriacao;
-		addPerfil(Perfil.CLIENTE);
-	}
 
-	public Pessoa(Integer id2, String nome2, String cpf2, String email2, String senha2) {
-		super();
-		addPerfil(Perfil.CLIENTE);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	public Integer getId() {
 		return id;
 	}
