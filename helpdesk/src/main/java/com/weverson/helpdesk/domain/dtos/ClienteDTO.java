@@ -7,12 +7,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.weverson.helpdesk.domain.Tecnico;
+import com.weverson.helpdesk.domain.Cliente;
 import com.weverson.helpdesk.domain.enums.Perfil;
 
 import jakarta.validation.constraints.NotNull;
 
-public class TecnicoDTO implements Serializable{
+public class ClienteDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -35,19 +35,19 @@ public class TecnicoDTO implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 
-	public TecnicoDTO(Tecnico tecnico) {
+	public ClienteDTO(Cliente cliente) {
 		super();
-		this.id = tecnico.getId();
-		this.nome = tecnico.getNome();
-		this.cpf = tecnico.getCpf();
-		this.email = tecnico.getEmail();
-		this.senha = tecnico.getSenha();
-		this.perfis = tecnico.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-		this.dataCriacao = tecnico.getDataCriacao();
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.cpf = cliente.getCpf();
+		this.email = cliente.getEmail();
+		this.senha = cliente.getSenha();
+		this.perfis = cliente.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = cliente.getDataCriacao();
 		addPerfil(Perfil.CLIENTE);
 	}
 
-	public TecnicoDTO() {
+	public ClienteDTO() {
 		super();
 		addPerfil(Perfil.CLIENTE);
 	}
