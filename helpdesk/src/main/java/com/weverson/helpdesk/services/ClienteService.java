@@ -39,22 +39,22 @@ public class ClienteService {
 
 	}
 
-	public Cliente create(ClienteDTO tecnicoDTO) {
-		tecnicoDTO.setId(null);
-		validarPorCpfEEmail(tecnicoDTO);
-		Cliente tecnico = new Cliente(tecnicoDTO);
-		return repository.save(tecnico);
+	public Cliente create(ClienteDTO clienteDTO) {
+		clienteDTO.setId(null);
+		validarPorCpfEEmail(clienteDTO);
+		Cliente cliente = new Cliente(clienteDTO);
+		return repository.save(cliente);
 	}
 
-	public void validarPorCpfEEmail(ClienteDTO tecnicoDTO) {
-		Optional<Pessoa> obj = pessoaRepository.findByCpf(tecnicoDTO.getCpf());
-		if (obj.isPresent() && obj.get().getId() != tecnicoDTO.getId()) {
+	public void validarPorCpfEEmail(ClienteDTO clienteDTO) {
+		Optional<Pessoa> obj = pessoaRepository.findByCpf(clienteDTO.getCpf());
+		if (obj.isPresent() && obj.get().getId() != clienteDTO.getId()) {
 			throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
 		}
 
-		obj = pessoaRepository.findByEmail(tecnicoDTO.getEmail());
+		obj = pessoaRepository.findByEmail(clienteDTO.getEmail());
 
-		if (obj.isPresent() && obj.get().getId() != tecnicoDTO.getId()) {
+		if (obj.isPresent() && obj.get().getId() != clienteDTO.getId()) {
 			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema.");
 		}
 	}
@@ -69,9 +69,9 @@ public class ClienteService {
 	}
 
 	public void delete(Integer id) {
-		Cliente tecnico = findById(id);
+		Cliente cliente = findById(id);
 
-		if (tecnico.getChamados().size() > 0) {
+		if (cliente.getChamados().size() > 0) {
 			throw new DataIntegrityViolationException("Cliente possui ordens de serviço e não pode ser deletado!");
 		}
 		repository.deleteById(id);
